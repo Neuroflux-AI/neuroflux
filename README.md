@@ -6,7 +6,8 @@ Neuroflux is a multimodal Grad-CAM-enhanced U-Net-based deep learning model for 
 ### Running the Project in Google Colab
 1. Navigate to neuroflux.ipynb and select **Open in Colab**
 2. Select **File > Save a Copy in Drive**
-3. Run the notebook with **Runtime > Run all**
+3. Upload a Kaggle API key (Kaggle Account Settings > API > Create New Token) as a temporary file 
+4. Run the notebook with **Runtime > Run all**
 
 ### Model Evaluation on the Test Set
 1. Loss: 0.0319
