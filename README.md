@@ -4,9 +4,9 @@
 Neuroflux is a multimodal Grad-CAM-enhanced U-Net-based deep learning model for Glioblastoma Multiforme segmentation
 
 ### Running the Neuroflux Library
-Neuroflux is available as a public Python package as part of the Python Package Index! See instructions to use Neuroflux [here](https://pypi.org/project/neuroflux/). After uploading an MRI scan, the model will generate segmented images and Grad-CAM heatmaps showing the areas of the brain where the model is focusing, showing areas of tumor damage.
+Neuroflux is available as a public Python package as part of the Python Package Index! See instructions to use Neuroflux [here](https://pypi.org/project/neuroflux/). After uploading an MRI or CT scan, the model will generate segmented images and Grad-CAM heatmaps showing the areas of the brain where the model is focusing, showing areas of tumor damage.
 
-### Model Evaluation on the Test Set
+### MRI Model Evaluation on the Test Set
 1. Pixelwise Accuracy: 0.99
 2. MeanIOU: 0.7067
 3. Dice coefficient: 0.5332
@@ -16,6 +16,9 @@ Neuroflux is available as a public Python package as part of the Python Package 
 7. Dice coef Necrotic: 0.445
 8. Dice coef Edema: 0.6018
 9. Dice coef Enhancing: 0.6564
+
+### CT Model Evaluation on the Test Set
+1. Classification Accuracy: 0.9769
 
 ### Contributions
 Feel free to fork the repository and submit a pull request with any improvements. If you have any questions or run into issues, create an issue in the GitHub repository, and we will be happy to assist you!
