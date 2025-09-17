@@ -52,33 +52,32 @@ def main():
     st.markdown("### AI-Powered Brain Tumor Segmentation & Analysis")
     
     # Show package status
-    with st.expander("📦 Package Status"):
+    with st.expander("Package Status"):
         col1, col2, col3 = st.columns(3)
         with col1:
             if HAS_CV2:
-                st.success("✅ OpenCV (cv2) - Ready")
+                st.success("OpenCV (cv2) - Ready")
             else:
-                st.error("❌ OpenCV (cv2) - Missing")
+                st.error("OpenCV (cv2) - Missing")
         with col2:
             if HAS_PLOTLY:
-                st.success("✅ Plotly - Ready")  
+                st.success("Plotly - Ready")  
             else:
-                st.error("❌ Plotly - Missing")
+                st.error("Plotly - Missing")
         with col3:
-            st.info("ℹ️ Neuroflux - Optional")
+            st.info("ℹNeuroflux - Optional")
     
     # Sidebar
     with st.sidebar:
-        st.header("📋 About Neuroflux")
+        st.header("About Neuroflux")
         st.write("""
-        🎯 **Features:**
-        • Upload MRI/CT scans
-        • AI tumor detection  
-        • Segmentation visualization
-        • Medical reporting
+        **Features:**
+        • Upload MRI and CT scans
+        • Tumor segmentation  
+        • Grad-CAM Heatmap visualization
         """)
         
-        st.header("📊 Performance")
+        st.header("Performance")
         st.metric("Accuracy", "99%")
         st.metric("Precision", "99.2%") 
         st.metric("Dice Score", "53.3%")
@@ -87,7 +86,7 @@ def main():
     col1, col2 = st.columns([1, 1])
     
     with col1:
-        st.header("🔧 Upload & Configure")
+        st.header("Upload & Configure")
         
         # Scan type
         scan_type = st.selectbox("Scan Type:", ["MRI", "CT"])
@@ -100,7 +99,7 @@ def main():
         )
         
         # Settings
-        with st.expander("⚙️ Settings"):
+        with st.expander("Settings"):
             confidence = st.slider("Confidence Threshold", 0.1, 1.0, 0.5)
             show_overlay = st.checkbox("Show Segmentation Overlay", True)
             overlay_opacity = st.slider("Overlay Opacity", 0.1, 1.0, 0.6)
@@ -115,16 +114,16 @@ def main():
             st.image(image, caption=f"Uploaded {scan_type} scan", use_column_width=True)
             
             # Analyze button
-            if st.button("🔍 Analyze Scan", type="primary"):
+            if st.button("Analyze Scan", type="primary"):
                 analyze_image(image, scan_type, confidence, show_overlay, overlay_opacity)
         else:
-            st.info("👆 Upload a brain scan to get started!")
+            st.info("Upload a brain scan to get started!")
             show_demo()
 
 def analyze_image(image, scan_type, confidence, show_overlay, overlay_opacity):
     """Analyze the uploaded image"""
     
-    with st.spinner(f"🧠 Analyzing {scan_type} scan..."):
+    with st.spinner(f"Analyzing {scan_type} scan..."):
         # Convert to numpy array
         img_array = np.array(image.convert('RGB'))
         h, w = img_array.shape[:2]
@@ -133,10 +132,10 @@ def analyze_image(image, scan_type, confidence, show_overlay, overlay_opacity):
         results = create_demo_segmentation(img_array)
         
         # Show results in tabs
-        tab1, tab2, tab3 = st.tabs(["🎯 Segmentation", "📊 Analysis", "📋 Report"])
+        tab1, tab2, tab3 = st.tabs(["Segmentation", "Analysis", "Report"])
         
         with tab1:
-            st.subheader("Tumor Segmentation")
+            st.subheader("GBM Segmentation")
             
             col1, col2 = st.columns(2)
             with col1:
@@ -145,7 +144,7 @@ def analyze_image(image, scan_type, confidence, show_overlay, overlay_opacity):
             with col2:
                 if show_overlay and HAS_CV2:
                     # Create colored overlay
-                    overlay = create_overlay(img_array, results['mask'], overlay_opacity)
+scm-history-item:/workspaces/neuroflux?%7B%22repositoryId%22%3A%22scm0%22%2C%22historyItemId%22%3A%22d8d1a314fcd562502422c237b7b053fa75fd8483%22%2C%22historyItemParentId%22%3A%224fafd1fb578373ac64cc0b69abd1364f8dbf2019%22%2C%22historyItemDisplayId%22%3A%22d8d1a31%22%7D                    overlay = create_overlay(img_array, results['mask'], overlay_opacity)
                     st.image(overlay, caption="With Segmentation", use_column_width=True)
                 else:
                     st.image(results['mask'], caption="Segmentation Mask", use_column_width=True)
@@ -231,25 +230,22 @@ def create_overlay(image, mask, opacity):
 def generate_simple_report(results, scan_type):
     """Generate a simple medical report"""
     st.markdown(f"""
-    ## 🏥 Analysis Report
+    ## Analysis Report
     
     **Scan Type:** {scan_type}  
     **Analysis Date:** Today  
-    **AI Model:** Neuroflux Demo
+    **AI Model:** Neuroflux v1 Demo
     
-    ### 📋 Findings
+    ### Findings
     - **Tumor Detection:** Positive
     - **Confidence Level:** {results['confidence']:.1%}
     - **Estimated Volume:** {results['volume']:.1f} mm³
     - **Affected Brain Area:** {results['area_ratio']:.1f}%
     
-    ### ⚠️ Disclaimer
-    This is a demonstration analysis. Real medical diagnosis requires:
-    - Professional radiologist review
-    - Clinical correlation
-    - Additional imaging if needed
+    ### Disclaimer
+    This is a demonstration analysis. Real medical diagnosis would require subsequent review from a pathologist and potentially additional imaging if required
     
-    **Not for actual medical use.**
+    **Not for clinical use.**
     """)
 
 def show_demo():
