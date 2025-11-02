@@ -30,8 +30,8 @@ if st.button("Generate Heat map"):
                 with open(t1ce_path, "wb") as f:
                     f.write(input_t1ce.read())
 
+                model = neuroflux.mri.prepare_mri_model(model_weights=model_weights, img_size=128)
                 if slice_num != 0:
-                    model = neuroflux.mri.prepare_mri_model(model_weights=model_weights, img_size=128)
                     output_slice_path = neuroflux.mri.display_slice(folder=tmpdir, input_flair=input_flair.name, input_t1ce=input_t1ce.name, slice_num=slice_num, model=model)
                     st.image(f"mri_gradcam_slice_{slice_num}.png")
                 neuroflux.mri.display_grid(folder=tmpdir, input_flair=input_flair.name, input_t1ce=input_t1ce.name, model=model)
