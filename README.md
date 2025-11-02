@@ -1,10 +1,10 @@
 # Neuroflux
 
 ### Overview
-Neuroflux is a multimodal Grad-CAM-enhanced U-Net-based deep learning model for Glioblastoma Multiforme segmentation
+Neuroflux is a multimodal Grad-CAM-enhanced U-Net-based deep learning model for Glioblastoma Multiforme segmentation. For most people, using Neuroflux via our online application is the easiest solution. The application can be found [here](https://neuroflux.streamlit.app/).
 
 ### Running the Neuroflux Library
-Neuroflux is available as a public Python package as part of the Python Package Index! See instructions to use Neuroflux [here](https://pypi.org/project/neuroflux/). Predefined model weights for the MRI and CT scans are available on Neuroflux's Google Drive! Access mri_.weights.h5 [here](https://drive.google.com/file/d/1-636ryo8Uz2M_km9HNxDxYOD1Dr464ly/view?usp=sharing) and access ct_weghts.pth [here](https://drive.google.com/file/d/1Ie2Q9MHubN3C4SqGm3XdHg1Keci1NjZF/view?usp=sharing). Download these files and upload them as instructed on our PyPI page. After uploading an MRI or CT scan, the model will generate segmented images and Grad-CAM heatmaps showing the areas of the brain where the model is focusing, showing areas of tumor damage.
+For more technical or offline use cases, Neuroflux is available as a public Python package as part of the Python Package Index! See instructions to use Neuroflux [here](https://pypi.org/project/neuroflux/). Predefined model weights for the MRI and CT scans are available on Neuroflux's Google Drive! Access mri_.weights.h5 [here](https://drive.google.com/file/d/1-636ryo8Uz2M_km9HNxDxYOD1Dr464ly/view?usp=sharing) and access ct_weghts.pth [here](https://drive.google.com/file/d/1Ie2Q9MHubN3C4SqGm3XdHg1Keci1NjZF/view?usp=sharing). Download these files and upload them as instructed on our PyPI page. After uploading an MRI or CT scan, the model will generate segmented images and Grad-CAM heatmaps showing the areas of the brain where the model is focusing, showing areas of tumor damage.
 
 ### MRI Model Evaluation on the Test Set
 1. Pixelwise Accuracy: 0.99
