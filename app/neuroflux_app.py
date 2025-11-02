@@ -12,7 +12,7 @@ if modality == "MRI":
     input_flair = st.file_uploader("Upload FLAIR", type=["nii", "nii.gz"])
     input_t1ce = st.file_uploader("Upload T1ce", type=["nii", "nii.gz"])
     model_weights = os.path.join(os.path.dirname(__file__), "mri_.weights.h5")
-    slice_num = st.number_input("Slice number", value=75, step=1)
+    slice_num = st.number_input("Slice number (optional)", step=1)
 elif modality == "CT":
     input_ct = st.file_uploader("Upload CT scan", type=["jpg", "jpeg", "png"])
     model_weights = os.path.join(os.path.dirname(__file__), "ct_weights.pth")
@@ -30,9 +30,10 @@ if st.button("Generate Heat map"):
                 with open(t1ce_path, "wb") as f:
                     f.write(input_t1ce.read())
 
-                model = neuroflux.mri.prepare_mri_model(model_weights=model_weights, img_size=128)
-                output_slice_path = neuroflux.mri.display_slice(folder=tmpdir, input_flair=input_flair.name, input_t1ce=input_t1ce.name, slice_num=slice_num, model=model)
-                st.image(f"mri_gradcam_slice_{slice_num}.png")
+                if slice_num:
+                    model = neuroflux.mri.prepare_mri_model(model_weights=model_weights, img_size=128)
+                    output_slice_path = neuroflux.mri.display_slice(folder=tmpdir, input_flair=input_flair.name, input_t1ce=input_t1ce.name, slice_num=slice_num, model=model)
+                    st.image(f"mri_gradcam_slice_{slice_num}.png")
                 neuroflux.mri.display_grid(folder=tmpdir, input_flair=input_flair.name, input_t1ce=input_t1ce.name, model=model)
                 st.image("mri_gradcam_grid.png")
 
