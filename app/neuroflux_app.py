@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import tempfile
-import neuroflux
 
 st.title("Neuroflux AI")
 st.write("Upload MRI or CT scans to view AI-generated tumor heat maps")
@@ -18,6 +17,8 @@ elif modality == "CT":
     model_weights = os.path.join(os.path.dirname(__file__), "ct_weights.pth")
 
 if st.button("Generate Heat map"):
+    import neuroflux
+    
     if modality == "MRI" and input_flair and input_t1ce:
         with st.spinner("Generating heat map..."):
             
